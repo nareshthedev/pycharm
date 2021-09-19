@@ -1,0 +1,20 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker
+  labels:
+    author: naresh
+spec:
+  selector:
+    matchLabels:
+      name: worker-app
+  template:
+    metadata:
+      name: worker-app
+      labels:
+        name: worker-app
+    spec:
+      containers:
+        - name: worker-app
+          image: dockersamples/examplevotingapp_worker

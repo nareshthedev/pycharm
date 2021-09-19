@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vol-depploy
+  labels:
+    type: volume
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      type: volume
+  template:
+    metadata:
+      name: vol-pod
+      labels:
+        type: volume
+    spec:
+      containers:
+        - name: redis
+          image: redis
+          volumeMounts:
+            - name: redis-vol
+              mountPath: /data/redis
+      volumes:
+        - name: redis-vol
+          emptyDir: {}
+...
